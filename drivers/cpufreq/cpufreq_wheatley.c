@@ -1,3 +1,4 @@
+/*
 *
 * drivers/cpufreq/cpufreq_wheatley.c
 *
