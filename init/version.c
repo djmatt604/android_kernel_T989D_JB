@@ -44,7 +44,7 @@ const char linux_banner[] =
 
 const char linux_proc_banner[] =
 	"%s version %s"
-	" (NorthernTouch Kernel v1.1)"
+	" (NorthernTouch Kernel v1.2)"
 	" (" LINUX_COMPILER ") %s\n";
 /* old one
 	" (" LINUX_COMPILE_BY "@" LINUX_COMPILE_HOST ")"
