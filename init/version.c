@@ -44,7 +44,7 @@ const char linux_banner[] =
 
 const char linux_proc_banner[] =
 	"%s version %s"
-	" (NorthernTouch1.2::TeamInfamous)"
+	" (TeamInfamous)"
 	" (" LINUX_COMPILER ") %s\n";
 /* old one
 	" (" LINUX_COMPILE_BY "@" LINUX_COMPILE_HOST ")"
