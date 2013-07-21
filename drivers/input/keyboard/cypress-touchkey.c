@@ -105,7 +105,7 @@ static int touchkey_keycode[3] = { 0, KEY_BACK, KEY_MENU };
 #endif
 #endif
 #endif
-#if defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769)//new touchkey fpcb
+#if defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 static int touchkey_pba_revision = TOUCHKEY_PBA_REV_NA;
 #endif
 static int touchkey_pressed = 0;
@@ -298,7 +298,8 @@ int cypress_write_register(u8 addr, u8 w_data)
 || defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_I727) \
 || defined (CONFIG_USA_MODEL_SGH_I717) || defined(CONFIG_KOR_MODEL_SHV_E160L) \
 || defined(CONFIG_USA_MODEL_SGH_I757) || defined (CONFIG_USA_MODEL_SGH_T769) \
-|| defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R) || defined(CONFIG_CAN_MODEL_SGH_I757M)
+|| defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R) \
+|| defined(CONFIG_CAN_MODEL_SGH_I757M) || defined (CONFIG_USA_MODEL_SGH_T989D)
 extern unsigned int  get_hw_rev(void);
 #endif
 
@@ -391,7 +392,7 @@ void touchkey_resume_func(struct work_struct *p)
 
 #if defined (CONFIG_USA_MODEL_SGH_T989)||defined (CONFIG_USA_MODEL_SGH_I727) || defined (CONFIG_USA_MODEL_SGH_I717)\
 	|| defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R)\
-	|| defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M)
+	|| defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M) || defined(CONFIG_USA_MODEL_SGH_T989D)
     touchkey_auto_calibration(1/*on*/);
 #elif defined (CONFIG_KOR_MODEL_SHV_E110S)
 	if (get_hw_rev() >= 0x02)
@@ -652,7 +653,7 @@ static void sec_touchkey_early_suspend(struct early_suspend *h)
     }
 #endif
 
-#if defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769)
+#if defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 	if (get_hw_rev() >= 0x0d){
 		tkey_vdd_enable(0);
 		tkey_led_vdd_enable(0);
@@ -738,7 +739,7 @@ static void sec_touchkey_early_suspend(struct early_suspend *h)
 
 static void sec_touchkey_early_resume(struct early_suspend *h)
 {
-#if defined (CONFIG_EUR_MODEL_GT_I9210) || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989)
+#if defined (CONFIG_EUR_MODEL_GT_I9210) || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T989D)
  	int ret =0;
 #endif
 	set_touchkey_debug('R');
@@ -748,7 +749,7 @@ static void sec_touchkey_early_resume(struct early_suspend *h)
 		return;
 	}
 
-#if defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769)
+#if defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 	if (get_hw_rev() >= 0x0d){
 		tkey_vdd_enable(1);
 		ret = gpio_request(GPIO_TOUCHKEY_SCL, "TKEY_SCL");
@@ -892,7 +893,7 @@ if(touchled_cmd_reversed) {
 #elif defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M)
 				tkey_led_vdd_enable(1);
 
-#elif defined (CONFIG_USA_MODEL_SGH_T989)|| defined (CONFIG_USA_MODEL_SGH_T769)
+#elif defined (CONFIG_USA_MODEL_SGH_T989)|| defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 			if (get_hw_rev() >=0x0d){		
 				tkey_led_vdd_enable(1); 	
 			}
@@ -1127,7 +1128,7 @@ static int i2c_touchkey_probe(struct i2c_client *client, const struct i2c_device
 || defined (CONFIG_JPN_MODEL_SC_03D) || defined (CONFIG_USA_MODEL_SGH_I717) \
 || defined(CONFIG_KOR_MODEL_SHV_E160L)\
 || defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R)\
-|| defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M)
+|| defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M) || defined(CONFIG_USA_MODEL_SGH_T989D)
 
        int touch_auto_calibration_on_off = 0;
 	u8 data[6];
@@ -1211,7 +1212,7 @@ static int i2c_touchkey_probe(struct i2c_client *client, const struct i2c_device
 #if defined (CONFIG_USA_MODEL_SGH_I727) || defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_JPN_MODEL_SC_03D) \
 || defined (CONFIG_KOR_MODEL_SHV_E110S) || defined (CONFIG_USA_MODEL_SGH_I717) || defined(CONFIG_KOR_MODEL_SHV_E160L) || defined (CONFIG_USA_MODEL_SGH_T769)\
 || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R)\
-|| defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M)
+|| defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M) || defined(CONFIG_USA_MODEL_SGH_T989D)
 	set_bit(touchkey_keycode[3], input_dev->keybit);
 	set_bit(touchkey_keycode[4], input_dev->keybit);
 #endif
@@ -1241,7 +1242,8 @@ static int i2c_touchkey_probe(struct i2c_client *client, const struct i2c_device
 		return -EBUSY;
 	}
 #if defined(CONFIG_USA_MODEL_SGH_T989)||defined (CONFIG_USA_MODEL_SGH_I727) || defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577)\
-	|| defined(CONFIG_CAN_MODEL_SGH_I577R) || defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M)
+	|| defined(CONFIG_CAN_MODEL_SGH_I577R) || defined(CONFIG_USA_MODEL_SGH_I757) \
+	|| defined(CONFIG_CAN_MODEL_SGH_I757M) || defined(CONFIG_USA_MODEL_SGH_T989D)
     {
       touchkey_auto_calibration(1/*on*/);
     }
@@ -1372,7 +1374,7 @@ static void init_hw(void)
 
 		irq_set_irq_type(IRQ_TOUCHKEY_INT, IRQ_TYPE_EDGE_FALLING);
 
-#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769)
+#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 	if (get_hw_rev() >= 0x0d){
 		irq_set_irq_type(IRQ_TOUCHKEY_INT, IRQ_TYPE_EDGE_RISING);
 	} else {
@@ -1545,10 +1547,10 @@ static ssize_t touch_led_control(struct device *dev, struct device_attribute *at
 #if defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R)
 		int_data = int_data *0x10;
 #elif defined(CONFIG_KOR_MODEL_SHV_E110S) || defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_JPN_MODEL_SC_03D)\
-	|| defined (CONFIG_USA_MODEL_SGH_I727) || defined (CONFIG_USA_MODEL_SGH_T769)
+	|| defined (CONFIG_USA_MODEL_SGH_I727) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 #if defined(CONFIG_EUR_MODEL_GT_I9210)
 	if (get_hw_rev() >=0x05 )
-#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_I727)
+#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_I727) || defined (CONFIG_USA_MODEL_SGH_T989D)
 	if (get_hw_rev() >=0x05 )
 #elif defined (CONFIG_JPN_MODEL_SC_03D)
 	if (get_hw_rev() >=0x02 )
@@ -1872,7 +1874,8 @@ static ssize_t touch_sensitivity_control(struct device *dev, struct device_attri
 
 #if defined (CONFIG_USA_MODEL_SGH_T989) || defined(CONFIG_USA_MODEL_SGH_I727) || defined(CONFIG_USA_MODEL_SGH_I717) \
 || defined (CONFIG_KOR_MODEL_SHV_E110S)|| defined(CONFIG_KOR_MODEL_SHV_E160L) || defined(CONFIG_CAN_MODEL_SGH_I757M)\
-|| defined(CONFIG_USA_MODEL_SGH_I757) || defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R)
+|| defined(CONFIG_USA_MODEL_SGH_I757) || defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577) \
+|| defined(CONFIG_CAN_MODEL_SGH_I577R) || defined (CONFIG_USA_MODEL_SGH_T989D)
 static ssize_t touch_recommend_read(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	char data[3] = { 0, };
@@ -1918,7 +1921,7 @@ static ssize_t touch_recommend_read(struct device *dev, struct device_attribute 
                 data[1] = 0x04;
 #elif defined (CONFIG_USA_MODEL_SGH_T769)
         data[1] = BUILTIN_FW_VER;
-#elif defined (CONFIG_USA_MODEL_SGH_T989)
+#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T989D)
         if (get_hw_rev() >= 0x0d)
                 data[1] = 0x13;
       else if (get_hw_rev() >= 0x09)
@@ -2111,7 +2114,8 @@ static DEVICE_ATTR(touchkey_autocal_start, S_IRUGO | S_IWUSR | S_IWGRP, set_touc
 static DEVICE_ATTR(touchkey_firm_update_status, S_IRUGO | S_IWUSR | S_IWGRP, set_touchkey_firm_status_show, NULL);	/* firmware update status return */
 #if defined (CONFIG_USA_MODEL_SGH_T989) || defined(CONFIG_USA_MODEL_SGH_I727) || defined(CONFIG_USA_MODEL_SGH_I717) \
 || defined (CONFIG_KOR_MODEL_SHV_E110S)|| defined(CONFIG_KOR_MODEL_SHV_E160L) || defined(CONFIG_CAN_MODEL_SGH_I757M)\
-|| defined(CONFIG_USA_MODEL_SGH_I757) || defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577) || defined(CONFIG_CAN_MODEL_SGH_I577R)
+|| defined(CONFIG_USA_MODEL_SGH_I757) || defined (CONFIG_USA_MODEL_SGH_T769) || defined(CONFIG_USA_MODEL_SGH_I577) \
+|| defined(CONFIG_CAN_MODEL_SGH_I577R) || defined (CONFIG_USA_MODEL_SGH_T989D)
 static DEVICE_ATTR(touchkey_firm_version_phone, S_IRUGO | S_IWUSR | S_IWGRP, touch_recommend_read, NULL);/* PHONE*/	/* firmware version resturn in phone driver version */
 #else
 static DEVICE_ATTR(touchkey_firm_version_phone, S_IRUGO | S_IWUSR | S_IWGRP, set_touchkey_firm_version_show, NULL);/* PHONE*/	/* firmware version resturn in phone driver version */
@@ -2336,7 +2340,7 @@ static int __init touchkey_init(void)
 #elif defined (CONFIG_USA_MODEL_SGH_I717) || defined(CONFIG_KOR_MODEL_SHV_E160L)\
    || defined(CONFIG_USA_MODEL_SGH_I757) || defined(CONFIG_CAN_MODEL_SGH_I757M)
 		irq_set_irq_type(IRQ_TOUCHKEY_INT, IRQ_TYPE_EDGE_FALLING);
-#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769)
+#elif defined (CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T769) || defined (CONFIG_USA_MODEL_SGH_T989D)
 	if (get_hw_rev() >= 0x0d){
 		irq_set_irq_type(IRQ_TOUCHKEY_INT, IRQ_TYPE_EDGE_RISING);
 	} else {
@@ -2378,7 +2382,7 @@ static int __init touchkey_init(void)
 		init_hw();	//after update, re initalize.
 	}
 
-#elif defined(CONFIG_USA_MODEL_SGH_T989)//new touchkey fpcb
+#elif defined(CONFIG_USA_MODEL_SGH_T989) || defined (CONFIG_USA_MODEL_SGH_T989D) //new touchkey fpcb
 	//update version "eclair/vendor/samsung/apps/Lcdtest/src/com/sec/android/app/lcdtest/touch_firmware.java"
 	if ((data[1] == 0x01) && (data[2] < 0x05)) {
 		set_touchkey_debug('U');
