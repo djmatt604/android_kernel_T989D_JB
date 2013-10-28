@@ -1,7 +1,7 @@
 VERSION = 3
 PATCHLEVEL = 0
 SUBLEVEL = 32
-EXTRAVERSION = _NorthernTouch1.4
+EXTRAVERSION = _NorthernTouch1.5
 NAME = Sneaky Weasel
 
 # *DOCUMENTATION*
